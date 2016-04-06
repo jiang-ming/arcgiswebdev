@@ -18,12 +18,12 @@ define([
     declaredClass: 'widgets.edit.EditTools',
 
     templateString: template,
-
     editing: false,
 
     // lifecycle 1
     constructor: function(options, srcRefNode) {
       this.inherited(arguments);
+console.log(template);
 
       // mix in settings and defaults
       this.options = options || {};
