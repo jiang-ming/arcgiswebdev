@@ -59,7 +59,6 @@ _addPoint: function(e) {
      attributes.IssueType = 'New Request';
      attributes.RequestDate = new Date().getTime();
      attributes.CensusTract = census.attributes.NAME;
-     console.log(e);
      graphic = new Graphic(mapPt, null, attributes);
       this.requestLayer.applyEdits([graphic]).then(lang.hitch(this, function() {
        this._toggleEditButton();
