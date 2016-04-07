@@ -7,7 +7,7 @@ define([
 ], function(FeatureLayer, SimpleRenderer, symbolUtil) {
 
   var CENSUS_URL = 'http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/CensusLaborDemo/FeatureServer/1'
-    , REQUEST_URL = 'http://services1.arcgis.com/QKasy5M2L9TAQ7gs/arcgis/rest/services/Requests/FeatureServer/0';
+    , REQUEST_URL = 'http://services.arcgis.com/7YO6tI83ZeEt9NRL/arcgis/rest/services/Request3/FeatureServer/0';
 
   function _loadServices(config) {
     var layers = []

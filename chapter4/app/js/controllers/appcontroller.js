@@ -8,7 +8,7 @@ define([
     console.debug('map has been loaded', map);
     var editTools = new EditTools({
       map: map
-    });
+    },'map-tools');
   }
 
   function init(config) {

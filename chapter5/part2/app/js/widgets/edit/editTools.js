@@ -52,14 +52,15 @@ define([
 
     // private functions
 _addPoint: function(e) {
-     var mapPt = e.mapPoint 
-       , census = e.graphic 
+     var mapPt = e.mapPoint
+       , census = e.graphic
        , attributes = {}
        , graphic;
-     attributes.IssueType = 'New Request'; 
+     attributes.IssueType = 'New Request';
      attributes.RequestDate = new Date().getTime();
      attributes.CensusTract = census.attributes.NAME;
-     graphic = new Graphic(mapPt, null, attributes); 
+     console.log(e);
+     graphic = new Graphic(mapPt, null, attributes);
       this.requestLayer.applyEdits([graphic]).then(lang.hitch(this, function() {
        this._toggleEditButton();
        alert('Request submitted');
@@ -70,10 +71,10 @@ _addPoint: function(e) {
         this.editing = !this.editing;
         if(this.editing) {
           this.editNode.innerHTML = 'Adding Request';
-          this.handler.resume(); 
+          this.handler.resume();
         } else {
           this.editNode.innerHTML = 'Add Request';
-          this.handler.pause(); 
+          this.handler.pause();
         }
         domClass.toggle(this.editNode, 'btn-primary btn-success');
      }

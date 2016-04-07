@@ -45,7 +45,7 @@ define([
     };
     var params = { settings: settings };
     var editorWidget = new Editor(params);
-    //editorWidget.startup();
+    editorWidget.startup();
   }
 
   function _init(config) {
