@@ -40,7 +40,7 @@ define([
       this.handler.pause();
       this.own(
         this.handler,
-        on(this.editNode, 'click', lang.hitch(this, '_addRequest'))
+        on(this.domNode, '.btn-edit:click', lang.hitch(this, '_toggleEditButton'))
       );
     },
     // public methods
@@ -55,10 +55,13 @@ _addPoint: function(e) {
      var mapPt = e.mapPoint
        , census = e.graphic
        , attributes = {}
-       , graphic;
-     attributes.IssueType = 'New Request';
+       , graphic
+       ,description;
+       description=prompt('Description of request');
+     attributes.IssueType =this.requesttype;
      attributes.RequestDate = new Date().getTime();
      attributes.CensusTract = census.attributes.NAME;
+     attributes.Description=description;
      graphic = new Graphic(mapPt, null, attributes);
       this.requestLayer.applyEdits([graphic]).then(lang.hitch(this, function() {
        this._toggleEditButton();
@@ -66,16 +69,25 @@ _addPoint: function(e) {
      }));
   },
 
-  _toggleEditButton: function() {
+  _toggleEditButton: function(e) {
         this.editing = !this.editing;
+        this.requesttype='';
+        if (e){
+          this.requesttype=domAttr.get(e.target, 'data-type');
+          domClass.toggle(e.target,'btn-primary btn-success');
+        }
         if(this.editing) {
-          this.editNode.innerHTML = 'Adding Request';
+          query('.btn-primary', this.domNode)
+            .removeClass('btn-primary')
+            .attr('disabled','disabled');
           this.handler.resume();
         } else {
-          this.editNode.innerHTML = 'Add Request';
+          query('.btn-edit',this.domNode)
+            .removeClass('btn-success')
+            .addClass('btn-primary')
+            .removeAttr('disabled');
           this.handler.pause();
         }
-        domClass.toggle(this.editNode, 'btn-primary btn-success');
      }
 
   });
